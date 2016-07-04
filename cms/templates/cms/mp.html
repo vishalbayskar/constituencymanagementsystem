@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'cms/style.css' %}" />
+
+{% if MPDetail %}
+<h1> Detail of your MP {{ MPDetail.name }}</h1>
+
+<div id = "mpdetail">
+    <ul>
+        <li> MP Name : <a href=""> {{ MPDetail.name }} </a> </li>
+        <li> MP Age : {{ MPDetail.age }} </li>
+        <li> MP Education : {{ MPDetail.education }} </li>        
+    
+    </ul>
+
+</div>
+
+{% else %}
+    <h1> No Detail is Sent </h1>
+    
+{% endif %}
+

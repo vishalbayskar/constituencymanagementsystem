@@ -1,0 +1,50 @@
+
+{% if workDetail %}
+
+<div id = "workDetail">
+    <h1>Detail of Work : {{ workDetail.brief }}</h1>
+    <ul>
+        <li> Work Detail :  {{ workDetail.detail }} </a> </li>
+        <li> Work Status  : {{ workDetail.status }} </a> </li>
+        <li> Constituency : {{ workDetail.constituency }} </li>    
+        <li> Rating : {{ rating }} </li>
+    </ul>
+
+</div>
+<a href="{% url 'feedback' workDetail.id 'WORK' %}">Feedback</a>
+
+<a href="{% url 'constituency' workDetail.constituency_id %}">Back</a>
+
+
+{% else %}
+    <h1> No Detail is Sent </h1>
+{% endif %}
+
+<style>
+
+    a {
+        margin-left: 65px;
+    }
+    #btn {
+         position: relative;
+         text-align: left;
+         margin-left: 20px;
+        
+    }
+    body {
+        background-color: #75bdd1 ;
+    }
+    h1 {
+        color: maroon;
+        margin-left: 25px;
+    }
+    
+    #workDetail {
+    	 position: relative;
+         text-align: left;
+         left: 20px;
+         margin-left: 20px;
+    }
+
+
+</style>
