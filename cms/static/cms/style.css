@@ -2,15 +2,7 @@ li a {
     color: green;
 }
 
-#mpdetail {
-    position: relative;
-    text-align: center;
-    text-shadow: 2px 2px #ff0000;
-    
+body {
+    background-color : #E4F6EE;
 }
 
-	body {
-	    background-color: blue ;
-	    
-	 
-	}

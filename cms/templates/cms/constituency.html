@@ -9,7 +9,7 @@
 <div id = "constituencyDetail">
     <h1> Detail of your Constituency : {{ constituencyDetail.name }}</h1>
     <ul>
-        <li> Constituency Name : <a href=""> {{ constituencyDetail.name }} </a> </li>
+        <li> Constituency Name : {{ constituencyDetail.name }} </li>
         <li> Constituency MP  : <a href="/cms/{{ constituencyDetail.mp_id }}/mp/"> {{ constituencyDetail.mp }} </a> </li>
         <li> Constituency Population : {{ constituencyDetail.population }} </li>
         <li> Constituency Rating : {{ rating }} </li>
@@ -87,6 +87,9 @@
 
 <style type="text/css">
 
+    body {
+        background-color : #75bdd1;
+    }
 
     #constituencyDetail {
         position: relative;
