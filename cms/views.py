@@ -10,7 +10,7 @@ def index(request):
     template = loader.get_template('cms/index.html')
     constituency_list = Constituency.objects.all()
     
-    bestconstirating = Feedback.objects.filter(against="CONSTITUENCY").values('against_id').annotate(Avg('rating')).order_by('-rating__avg')[:2]
+    bestconstirating = Feedback.objects.filter(against="CONSTITUENCY").values('against_id').annotate(Avg('rating')).order_by('-rating__avg')[:3]
     
     bestconstidic = []
     count = 1
@@ -25,7 +25,7 @@ def index(request):
         bestconstidic.append(inlist)
         count = count + 1
     
-    worstconstirating = Feedback.objects.filter(against="CONSTITUENCY").values('against_id').annotate(Avg('rating')).order_by('rating__avg')[:2]
+    worstconstirating = Feedback.objects.filter(against="CONSTITUENCY").values('against_id').annotate(Avg('rating')).order_by('rating__avg')[:3]
     
     worstconstidic = []
     count = len(worstconstirating)
@@ -69,6 +69,8 @@ def constituency(request, constituency_id):
     worknew = Work.objects.filter(constituency=constituency_id, status='NEW')
     
     rating = Feedback.objects.filter(against_id=constituency_id, against="CONSTITUENCY").aggregate(Avg('rating'))['rating__avg']
+
+    comments = Feedback.objects.filter(against_id=constituency_id, against="CONSTITUENCY").values("detail", "rating").order_by("-id")[:3]
     
     template = loader.get_template('cms/constituency.html') 
     context = {
@@ -77,6 +79,7 @@ def constituency(request, constituency_id):
         'workinprogress' : workinprogress,
         'worknew' : worknew,
         'rating' : rating,
+        'comments' : comments,
     }
 
 
@@ -87,11 +90,14 @@ def constituency(request, constituency_id):
 def work(request, work_id):
     workDetail = Work.objects.get(pk=work_id)
     rating = Feedback.objects.filter(against_id=work_id, against="WORK").aggregate(Avg('rating'))['rating__avg']
+    comments = Feedback.objects.filter(against_id=work_id, against="WORK").values("detail", "rating").order_by("-id")[:3]
+ 
     template = loader.get_template('cms/work.html') 
     
     context = {
         'workDetail' : workDetail,
         'rating' : rating,
+        'comments' : comments,
     }
     
     return HttpResponse(template.render(context, request))
@@ -142,7 +148,7 @@ def feedback(request, item_id, item):
                 'workBrief' : workBrief[0]['name'],
             }
         
-        
+     
     
 
     return HttpResponse(template.render(context, request))

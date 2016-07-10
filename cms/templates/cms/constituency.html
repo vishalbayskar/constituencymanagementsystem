@@ -73,6 +73,22 @@
             
     </div>
     
+
+    <div class="comments">
+        {% if comments %}
+    
+            <h2>Feedback for Constituency </h2>
+            <ul>
+                {% for comment in comments %}
+                    <li> Comment : {{ comment.detail }} , Rating : {{ comment.rating }}  </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>Comments are there.</h2>
+        {% endif %}
+            
+    </div>
+
     
     <div id="btns">
         
@@ -83,6 +99,8 @@
     </div>
 
 </div>
+
+
 
 
 <style type="text/css">
@@ -111,7 +129,7 @@
             float : left;
             margin-left : 50px;
             position : relative;
-            top : 100px;
+            top : 50px;
             left : 10px;
         }
     
@@ -122,10 +140,22 @@
         
     }
     
+    .comments {
+         position : relative;
+         top : 260px;
+         left : -660px;
+        
+    }
+    
+    .comments h2 {
+        position : relative;
+        left : -20px;
+    }
+    
     #btns {
             clear : both;
             position : relative;
-            top : 200px;
+            top : 300px;
             left : 70px;
         
         }
