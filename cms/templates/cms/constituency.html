@@ -3,80 +3,82 @@
 <link rel="stylesheet" type="text/css" href="{% static 'cms/style.css' %}" />
 
 
-{% if constituencyDetail %}
-
-
-<div id = "constituencyDetail">
-    <h1> Detail of your Constituency : {{ constituencyDetail.name }}</h1>
-    <ul>
-        <li> Constituency Name : {{ constituencyDetail.name }} </li>
-        <li> Constituency MP  : <a href="/cms/{{ constituencyDetail.mp_id }}/mp/"> {{ constituencyDetail.mp }} </a> </li>
-        <li> Constituency Population : {{ constituencyDetail.population }} </li>
-        <li> Constituency Rating : {{ rating }} </li>
-    </ul>
-</div>
-
-{% else %}
-    <h1> No Detail is Sent </h1>
-{% endif %}
-
-
-<div id="workstatus">
-
-
-    <div class="workdone">
-        {% if workdone %}
+<div id = "container">
     
-            <h2> workdone </h2>
-            <ul>
-                {% for work in workdone %}
-                    <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <h2>No done work is there.</h2>
-        {% endif %}
-            
+    {% if constituencyDetail %}
+
+    <div id = "constituencyDetail">
+        <h1> Detail of your Constituency : {{ constituencyDetail.name }}</h1>
+        <ul>
+            <li> Constituency Name : {{ constituencyDetail.name }} </li>
+            <li> Constituency MP  : <a href="/cms/{{ constituencyDetail.mp_id }}/mp/"> {{ constituencyDetail.mp }} </a> </li>
+            <li> Constituency Population : {{ constituencyDetail.population }} </li>
+            <li> Constituency Rating : {{ rating }} </li>
+        </ul>
     </div>
     
+    {% else %}
+        <h1> No Detail is Sent </h1>
+    {% endif %}
     
-    <div class="workinprogress">
     
-        {% if workinprogress %}
+    <div id="workstatus">
     
-            <h2> workinprogress </h2>
-            <ul>
-                {% for work in workinprogress %}
-                    <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
-                {% endfor %}
-            </ul>
-            
-        {% else %}
-            <h2>No in-progress work is there.</h2>
-        {% endif %}
-            
+    
+        <div class="workdone">
+            {% if workdone %}
+        
+                <h2> Completed </h2>
+                <ul>
+                    {% for work in workdone %}
+                        <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>No Complet work.</h2>
+            {% endif %}
+                
+        </div>
+        
+        
+        <div class="workinprogress">
+        
+            {% if workinprogress %}
+        
+                <h2> In-Progress </h2>
+                <ul>
+                    {% for work in workinprogress %}
+                        <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
+                    {% endfor %}
+                </ul>
+                
+            {% else %}
+                <h2>No In-Progress work</h2>
+            {% endif %}
+                
+        </div>
+        
+        <div class="worknew">
+        
+            {% if worknew %}
+        
+                <h2> New </h2>
+                <ul>
+                    {% for work in worknew %}
+                        <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>No new work</h2>
+            {% endif %}
+                
+        </div>
+        
     </div>
     
-    <div class="worknew">
-    
-        {% if worknew %}
-    
-            <h2> worknew </h2>
-            <ul>
-                {% for work in worknew %}
-                    <li><a href="/cms/{{ work.id }}/work/">{{ work.brief }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <h2>No new work is there.</h2>
-        {% endif %}
-            
-    </div>
-    
-
     <div class="comments">
         {% if comments %}
-    
+        
             <h2>Feedback for Constituency </h2>
             <ul>
                 {% for comment in comments %}
@@ -86,21 +88,20 @@
         {% else %}
             <h2>Comments are there.</h2>
         {% endif %}
-            
+                
     </div>
-
     
-    <div id="btns">
         
+    <div id="btns">
+            
         <a id="feebackid" href="{% url 'feedback' constituencyDetail.id 'CONSTITUENCY' %}">Feedback</a>
-    
+        
         <a href="{% url 'index' %}">Back</a>
-    
+        
     </div>
-
+    
+    
 </div>
-
-
 
 
 <style type="text/css">
@@ -112,6 +113,8 @@
     #constituencyDetail {
         position: relative;
         left : 100px;
+        padding-right : 100px;
+
         
     }
     
@@ -122,14 +125,16 @@
     
     #workstatus {
         position:relative;
-        left : 40px;
+        left : 25px;
+        right : 100px;
+        padding : 20px;
     }
         
     .workdone, .workinprogress, .worknew {
             float : left;
             margin-left : 50px;
-            position : relative;
             top : 50px;
+            margin-right : 100px;
             left : 10px;
         }
     
@@ -137,26 +142,27 @@
     .workdone li, .workinprogress li, .worknew li {
         position : relative;
         left : -20px;
-        
     }
     
+    h1, h2{
+        color : navy;
+    }
     .comments {
          position : relative;
-         top : 260px;
-         left : -660px;
-        
+         clear : both;
+         left : 100px;
+         top : 20px;
     }
     
     .comments h2 {
-        position : relative;
         left : -20px;
     }
     
     #btns {
             clear : both;
             position : relative;
-            top : 300px;
-            left : 70px;
+            left : 100px;
+            top : 40px;
         
         }
         
