@@ -104,6 +104,8 @@
 </div>
 
 
+
+
 <style type="text/css">
 
     body {
@@ -129,14 +131,10 @@
         right : 100px;
         padding : 20px;
     }
-        
-    .workdone, .workinprogress, .worknew {
-            float : left;
-            margin-left : 50px;
-            top : 50px;
-            margin-right : 100px;
-            left : 10px;
-        }
+    
+    
+    
+    
     
     
     .workdone li, .workinprogress li, .worknew li {
@@ -173,5 +171,42 @@
 
 
 </style>
+
+{% if device.is_small %}
+
+	<style type="text/css">
+		
+	
+    .workdone, .workinprogress, .worknew {
+            clear : both;
+            width : 500px;
+            margin-left : 50px;
+            top : 50px;
+            left : 10px;
+        }
+    
+	
+
+	</style>
+	
+{% else %}
+	
+	<style type="text/css">
+	
+	
+    .workdone, .workinprogress, .worknew {
+            float : left;
+            margin-left : 50px;
+            top : 50px;
+            margin-right : 100px;
+            left : 10px;
+        }
+    
+
+	</style>
+
+	
+{% endif %}
+
 
 
